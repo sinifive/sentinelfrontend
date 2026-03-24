@@ -185,10 +185,16 @@ export function useAnalysis(): UseAnalysisReturn {
         contentAnalysis,
       };
 
+      console.log("Attempting to save analysis to database:", analysisData);
       const saveResult = await saveAnalysis(analysisData, apiResult);
+
       if (!saveResult.success) {
-        console.warn("Failed to save analysis to database:", saveResult.error);
+        console.error("Failed to save analysis to database:", saveResult.error);
+        console.error("Analysis data that failed to save:", analysisData);
+        console.error("API result:", apiResult);
         // Don't throw error - analysis was successful, just saving failed
+      } else {
+        console.log("Analysis successfully saved to database with ID:", saveResult.data?.id);
       }
 
       setLoading(false);

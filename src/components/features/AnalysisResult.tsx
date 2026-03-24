@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { MessageSquare, Link, Image, Shield, TrendingUp, AlertTriangle } from "lucide-react";
+import { useTranslation } from "@/hooks/use-translation";
 import type { SentinelResponse } from "@/services/sentinelApiService";
 
 interface AnalysisResultProps {
@@ -9,6 +10,7 @@ interface AnalysisResultProps {
 }
 
 export function AnalysisResult({ result }: AnalysisResultProps) {
+  const { t } = useTranslation();
   const isSpam = result.decision === "SPAM";
   const riskPercentage = Math.round(result.final_score * 100);
 
@@ -22,37 +24,37 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
       <Card className="bg-card border-border">
         <CardContent className="pt-6">
           <div className="space-y-4">
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <Badge className={`${verdictColor} text-lg px-4 py-2`}>
-                {result.decision}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 min-w-0">
+              <Badge className={`${verdictColor} text-lg px-4 py-2 w-fit`}>
+                {isSpam ? t("spam") : t("ham")}
               </Badge>
-              <div className="flex items-center gap-4">
-                <span className="text-sm font-medium text-muted-foreground">
-                  {result.confidence} Confidence
+              <div className="flex flex-wrap items-baseline justify-start sm:justify-end gap-x-3 gap-y-1 sm:text-right min-w-0">
+                <span className="text-sm font-medium text-muted-foreground break-words min-w-0">
+                  {result.confidence} {t("confidence")}
                 </span>
-                <span className={`text-2xl font-bold ${isSpam ? "text-destructive" : "text-success"}`}>
+                <span className={`text-2xl font-bold whitespace-nowrap ${isSpam ? "text-destructive" : "text-success"}`}>
                   {riskPercentage}%
                 </span>
               </div>
             </div>
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Risk Score</span>
+                <span className="text-muted-foreground">{t("riskScore")}</span>
                 <span className="font-medium">{riskPercentage}%</span>
               </div>
-              <Progress value={riskPercentage} className={progressColor} />
+              <Progress value={riskPercentage} indicatorClassName={progressColor} />
             </div>
             <div className={`p-3 rounded-lg ${isSpam ? "bg-destructive/10" : "bg-success/10"}`}>
               <p className="text-sm">
                 {isSpam ? (
                   <>
                     <AlertTriangle className="inline h-4 w-4 mr-1" />
-                    This message appears to be spam/phishing. Exercise caution.
+                    {t("spamWarning")}
                   </>
                 ) : (
                   <>
                     <Shield className="inline h-4 w-4 mr-1" />
-                    This message appears to be legitimate.
+                    {t("legitimateMessage")}
                   </>
                 )}
               </p>
@@ -66,23 +68,23 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <TrendingUp className="h-5 w-5 text-primary" />
-            Pipeline Breakdown
+            {t("pipelineBreakdown")}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Text Score */}
-            <div className="p-4 bg-secondary/50 rounded-lg space-y-2">
+            <div className="p-4 bg-secondary/50 rounded-lg space-y-2 min-w-0">
               <div className="flex items-center gap-2">
                 <MessageSquare className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">Text Analysis</span>
+                <span className="text-sm font-medium break-words">{t("textAnalysis")}</span>
               </div>
               {result.pipeline_scores.text !== null ? (
                 <>
                   <div className="text-2xl font-bold">
                     {Math.round(result.pipeline_scores.text * 100)}%
                   </div>
-                  <Progress value={result.pipeline_scores.text * 100} className="h-2" />
+                  <Progress value={result.pipeline_scores.text * 100} className="h-2" indicatorClassName="bg-primary" />
                 </>
               ) : (
                 <div className="text-muted-foreground text-sm">N/A</div>
@@ -90,17 +92,17 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
             </div>
 
             {/* Metadata Score */}
-            <div className="p-4 bg-secondary/50 rounded-lg space-y-2">
+            <div className="p-4 bg-secondary/50 rounded-lg space-y-2 min-w-0">
               <div className="flex items-center gap-2">
                 <Link className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">Metadata Analysis</span>
+                <span className="text-sm font-medium break-words">{t("metadataAnalysis")}</span>
               </div>
               {result.pipeline_scores.metadata !== null ? (
                 <>
                   <div className="text-2xl font-bold">
                     {Math.round(result.pipeline_scores.metadata * 100)}%
                   </div>
-                  <Progress value={result.pipeline_scores.metadata * 100} className="h-2" />
+                  <Progress value={result.pipeline_scores.metadata * 100} className="h-2" indicatorClassName="bg-primary" />
                 </>
               ) : (
                 <div className="text-muted-foreground text-sm">N/A</div>
@@ -108,17 +110,17 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
             </div>
 
             {/* Image Score */}
-            <div className="p-4 bg-secondary/50 rounded-lg space-y-2">
+            <div className="p-4 bg-secondary/50 rounded-lg space-y-2 min-w-0">
               <div className="flex items-center gap-2">
                 <Image className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">Image Analysis</span>
+                <span className="text-sm font-medium break-words">{t("imageAnalysis")}</span>
               </div>
               {result.pipeline_scores.image !== null ? (
                 <>
                   <div className="text-2xl font-bold">
                     {Math.round(result.pipeline_scores.image * 100)}%
                   </div>
-                  <Progress value={result.pipeline_scores.image * 100} className="h-2" />
+                  <Progress value={result.pipeline_scores.image * 100} className="h-2" indicatorClassName="bg-primary" />
                 </>
               ) : (
                 <div className="text-muted-foreground text-sm">N/A</div>
@@ -133,29 +135,29 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
             <Shield className="h-5 w-5 text-primary" />
-            Fusion Weights Used
+            {t("fusionWeightsUsed")}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-wrap gap-3">
-            <div className="flex items-center gap-2 px-3 py-2 bg-secondary/50 rounded-full">
+          <div className="flex flex-wrap gap-3 min-w-0">
+            <div className="flex items-center gap-2 px-3 py-2 bg-secondary/50 rounded-full min-w-0 max-w-full">
               <MessageSquare className="h-3 w-3 text-primary" />
-              <span className="text-sm font-medium">Text:</span>
-              <span className="text-sm font-bold">{Math.round(result.fusion_weights_used.text * 100)}%</span>
+              <span className="text-sm font-medium">{t("text")}:</span>
+              <span className="text-sm font-bold whitespace-nowrap">{Math.round(result.fusion_weights_used.text * 100)}%</span>
             </div>
-            <div className="flex items-center gap-2 px-3 py-2 bg-secondary/50 rounded-full">
+            <div className="flex items-center gap-2 px-3 py-2 bg-secondary/50 rounded-full min-w-0 max-w-full">
               <Link className="h-3 w-3 text-primary" />
-              <span className="text-sm font-medium">Metadata:</span>
-              <span className="text-sm font-bold">{Math.round(result.fusion_weights_used.metadata * 100)}%</span>
+              <span className="text-sm font-medium">{t("metadata")}:</span>
+              <span className="text-sm font-bold whitespace-nowrap">{Math.round(result.fusion_weights_used.metadata * 100)}%</span>
             </div>
-            <div className="flex items-center gap-2 px-3 py-2 bg-secondary/50 rounded-full">
+            <div className="flex items-center gap-2 px-3 py-2 bg-secondary/50 rounded-full min-w-0 max-w-full">
               <Image className="h-3 w-3 text-primary" />
-              <span className="text-sm font-medium">Image:</span>
-              <span className="text-sm font-bold">{Math.round(result.fusion_weights_used.image * 100)}%</span>
+              <span className="text-sm font-medium">{t("image")}:</span>
+              <span className="text-sm font-bold whitespace-nowrap">{Math.round(result.fusion_weights_used.image * 100)}%</span>
             </div>
           </div>
           <p className="text-xs text-muted-foreground mt-3">
-            These weights show how much each analysis pipeline contributed to the final decision.
+            {t("weightsContribution")}
           </p>
         </CardContent>
       </Card>
@@ -166,7 +168,7 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <AlertTriangle className="h-5 w-5 text-warning" />
-              Key Indicators (Suspicious Words)
+              {t("keyIndicatorsSuspicious")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -179,9 +181,9 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
                     word.score > 0.7
                       ? "bg-destructive/20 text-destructive border-destructive/30"
                       : "bg-warning/20 text-warning border-warning/30"
-                  } border`}
+                  } border max-w-full`}
                 >
-                  <span className="font-medium">{word.word}</span>
+                  <span className="font-medium break-all">{word.word}</span>
                   <span className="ml-2 text-xs opacity-75">
                     {Math.round(word.score * 100)}%
                   </span>
@@ -189,7 +191,7 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
               ))}
             </div>
             <p className="text-xs text-muted-foreground mt-3">
-              These words contributed most significantly to the spam detection.
+              {t("wordsContributedDetection")}
             </p>
           </CardContent>
         </Card>
@@ -201,7 +203,7 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <AlertTriangle className="h-5 w-5 text-warning" />
-              Suspicious Features
+              {t("suspiciousFeatures")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -209,22 +211,21 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
               {result.explainability.contributing_features.slice(0, 5).map((feature, index) => (
                 <div key={index} className="space-y-1">
                   <div className="flex justify-between text-sm">
-                    <span className="font-medium">{feature.feature}</span>
-                    <span className="text-muted-foreground">
+                    <span className="font-medium break-words pr-2">{feature.feature}</span>
+                    <span className="text-muted-foreground whitespace-nowrap">
                       {Math.round(feature.score * 100)}%
                     </span>
                   </div>
                   <Progress
                     value={feature.score * 100}
-                    className={`h-2 ${
-                      feature.score > 0.7 ? "bg-destructive" : "bg-warning"
-                    }`}
+                    className="h-2"
+                    indicatorClassName={feature.score > 0.7 ? "bg-destructive" : "bg-warning"}
                   />
                 </div>
               ))}
             </div>
             <p className="text-xs text-muted-foreground mt-3">
-              These metadata features contributed to the detection.
+              {t("metadataFeaturesContributed")}
             </p>
           </CardContent>
         </Card>
@@ -236,7 +237,7 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <Image className="h-5 w-5 text-primary" />
-              Text Extracted from Image
+              {t("textExtractedImage")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -244,7 +245,7 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
               <p className="text-sm whitespace-pre-wrap">{result.explainability.ocr_text}</p>
             </blockquote>
             <p className="text-xs text-muted-foreground mt-3">
-              This text was extracted from the uploaded screenshot using OCR.
+              {t("ocrExtractedText")}
             </p>
           </CardContent>
         </Card>

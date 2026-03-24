@@ -85,7 +85,7 @@ export default function About() {
                 {t("aboutStats")}
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Scammers know that rural communities have limited access to fraud education. Many people don't speak English, where most scam warnings are published. The digital divide makes them vulnerable.
+                {t("digitalDivideVulnerable")}
               </p>
               <p className="text-lg text-foreground font-medium">
                 {t("aboutMission")}
@@ -101,8 +101,8 @@ export default function About() {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-destructive/10 mb-4">
                 <AlertTriangle className="h-6 w-6 text-destructive" />
               </div>
-              <h2 className="text-3xl font-bold text-foreground mb-4">The Problem Is Real</h2>
-              <p className="text-muted-foreground">The reality of SMS fraud in India</p>
+              <h2 className="text-3xl font-bold text-foreground mb-4">{t("problemIsReal")}</h2>
+              <p className="text-muted-foreground">{t("realityOfFraud")}</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
@@ -124,7 +124,7 @@ export default function About() {
                 <CardContent className="p-6">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                     <TrendingUp className="h-5 w-5 text-destructive" />
-                    More Alarming Facts
+                    {t("moreAlarmingFacts")}
                   </h3>
                   <ul className="space-y-3">
                     {additionalStats.map((stat, index) => (
@@ -141,7 +141,7 @@ export default function About() {
                 <CardContent className="p-6">
                   <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                     <MapPin className="h-5 w-5 text-accent" />
-                    Why Rural Areas Are Targeted
+                    {t("whyRuralTargeted")}
                   </h3>
                   <ul className="space-y-3">
                     {whyRuralTargeted.map((reason, index) => (
@@ -163,20 +163,20 @@ export default function About() {
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-success/10 mb-4">
               <CheckCircle className="h-6 w-6 text-success" />
             </div>
-            <h2 className="text-3xl font-bold text-foreground mb-4">Our Solution</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">{t("ourSolution")}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Simple, free, and accessible protection for everyone
+              {t("simpleFreeAccessible")}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { icon: Zap, title: "3-Second Analysis", desc: "Free AI that analyzes messages instantly" },
-              { icon: Globe, title: "Hindi, English, Telugu", desc: "Works in your language (more coming)" },
-              { icon: Users, title: "Built for Everyone", desc: "No tech knowledge needed" },
-              { icon: Lock, title: "Privacy First", desc: "Messages encrypted and deleted after 30 days" },
-              { icon: Target, title: "India-Specific", desc: "Trained on Indian scam patterns" },
-              { icon: Shield, title: "Free Forever", desc: "No ads, no tracking, no hidden costs" },
+              { icon: Zap, title: t("threeSecondAnalysis"), desc: t("freeAiInstant") },
+              { icon: Globe, title: t("hindiEnglishTeluguShort"), desc: t("worksInLanguage") },
+              { icon: Users, title: t("builtForEveryone"), desc: t("noTechKnowledge") },
+              { icon: Lock, title: t("privacyFirst"), desc: t("messagesEncrypted") },
+              { icon: Target, title: t("indiaSpecific"), desc: t("trainedIndianScams") },
+              { icon: Shield, title: t("freeForever"), desc: t("noAdsTracking") },
             ].map((feature, index) => (
               <Card key={index} className="bg-card border-border">
                 <CardContent className="p-6">
@@ -195,8 +195,8 @@ export default function About() {
         <section className="bg-secondary/30 py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">How It Works</h2>
-              <p className="text-muted-foreground">Four simple steps to protect yourself</p>
+              <h2 className="text-3xl font-bold text-foreground mb-4">{t("howItWorks")}</h2>
+              <p className="text-muted-foreground">{t("fourSimpleSteps")}</p>
             </div>
 
             <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
@@ -215,12 +215,10 @@ export default function About() {
               <Card className="bg-card border-border">
                 <CardContent className="p-6">
                   <p className="text-muted-foreground mb-4">
-                    Our AI scans phone numbers, links, sender details, and message content. 
-                    It compares against a database of reported scams, analyzes urgency language, threats, 
-                    and information requests. Then gives you a clear verdict with explanation.
+                    {t("aiScansDetailsLong")}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    <strong className="text-foreground">47 fraud patterns</strong> specific to India are checked in every analysis.
+                    <strong className="text-foreground">{t("fraudPatternsChecked")}</strong>
                   </p>
                 </CardContent>
               </Card>
@@ -234,11 +232,9 @@ export default function About() {
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-4">
               <Target className="h-6 w-6 text-primary" />
             </div>
-            <h2 className="text-3xl font-bold text-foreground mb-6">Our Mission</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-6">{t("ourMissionTitle")}</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Make SMS fraud detection accessible to every Indian, regardless of language, location, 
-              or technical knowledge. Protect the most vulnerable communities from losing money they can't afford to lose. 
-              Build awareness through education, not fear.
+              {t("ourMissionDescLong")}
             </p>
           </div>
         </section>
@@ -247,21 +243,21 @@ export default function About() {
         <section className="bg-secondary/30 py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-xl mx-auto text-center">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">{t("getInTouch")}</h2>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <a 
-                  href="mailto:contact@sentinelai.com" 
+                <a
+                  href={`mailto:${t("contactEmail")}`}
                   className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Mail className="h-5 w-5" />
-                  contact@sentinelai.com
+                  {t("contactEmail")}
                 </a>
-                <a 
-                  href="/contact" 
+                <a
+                  href="/contact"
                   className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Phone className="h-5 w-5" />
-                  Contact Form
+                  {t("contactForm")}
                 </a>
               </div>
             </div>

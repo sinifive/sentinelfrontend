@@ -15,11 +15,16 @@ export async function saveAnalysis(
   sentinelResult?: SentinelResponse
 ): Promise<ServiceResult<{ id: string }>> {
   try {
+    console.log("Starting analysis save...", { data, sentinelResult });
+
     const { data: userData } = await supabase.auth.getUser();
 
     if (!userData.user) {
+      console.error("User not authenticated for analysis save");
       return { success: false, error: "User not authenticated" };
     }
+
+    console.log("User authenticated:", userData.user.id);
 
     // Build the base insert object
     const insertData: any = {
@@ -39,14 +44,27 @@ export async function saveAnalysis(
       content_analysis: data.contentAnalysis as unknown as Json,
     };
 
-    // If sentinelResult is provided, add the FastAPI response fields
+    // If sentinelResult is provided, update the risk score and add explainability data
+    // Store the raw API results in the content_analysis field
     if (sentinelResult) {
       insertData.risk_score = Math.round(sentinelResult.final_score * 100);
-      insertData.decision = sentinelResult.decision;
-      insertData.confidence = sentinelResult.confidence;
-      insertData.contributing_words = sentinelResult.explainability.contributing_words as unknown as Json;
-      insertData.contributing_features = sentinelResult.explainability.contributing_features as unknown as Json;
+
+      // Store the raw Sentinel API response in content_analysis along with existing data
+      const existingContentAnalysis = insertData.content_analysis as any || {};
+      insertData.content_analysis = {
+        ...existingContentAnalysis,
+        sentiment_api_response: {
+          decision: sentinelResult.decision,
+          confidence: sentinelResult.confidence,
+          contributing_words: sentinelResult.explainability.contributing_words,
+          contributing_features: sentinelResult.explainability.contributing_features,
+          pipeline_scores: sentinelResult.pipeline_scores,
+          fusion_weights_used: sentinelResult.fusion_weights_used,
+        }
+      } as unknown as Json;
     }
+
+    console.log("Insert data prepared:", insertData);
 
     const { data: result, error } = await supabase
       .from("analyses")
@@ -55,11 +73,12 @@ export async function saveAnalysis(
       .single();
 
     if (error) {
-      console.error("Error saving analysis:", error);
+      console.error("Error saving analysis to database:", error);
+      console.error("Error details:", { message: error.message, details: error.details, hint: error.hint });
       return { success: false, error: error.message };
     }
 
-    console.log("Analysis saved successfully:", result.id);
+    console.log("Analysis saved successfully to database:", result.id);
     return { success: true, data: { id: result.id } };
   } catch (err) {
     console.error("Unexpected error saving analysis:", err);

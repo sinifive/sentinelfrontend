@@ -558,7 +558,9 @@
     // Analyze Page
     analyzeMessageTitle: "Analyze Message",
     analysisWillBeProvided: "Analysis will be provided in this language",
-    sendersNumbern: "Sender's Number *",
+    sendersNumberLabel: "Sender's Number *",
+    dateReceived: "Date Received",
+    timeReceived: "Time Received",
     phoneNumberPlaceholder: "e.g., +91 9876543210",
     enterPhoneWithCountryCode: "Enter phone number with country code (e.g., +91 9876543210)",
     messageTextLabel: "Message Text *",
@@ -569,6 +571,25 @@
     uploadingScreenshot: "Uploading screenshot...",
     analysisResults: "Analysis Results",
     analyzeAnother: "Analyze Another",
+    spam: "SPAM",
+    ham: "SAFE",
+    spamWarning: "This message appears to be spam/phishing. Exercise caution.",
+    legitimateMessage: "This message appears to be legitimate.",
+    pipelineBreakdown: "Pipeline Breakdown",
+    textAnalysis: "Text Analysis",
+    metadataAnalysis: "Metadata Analysis",
+    imageAnalysis: "Image Analysis",
+    fusionWeightsUsed: "Fusion Weights Used",
+    text: "Text",
+    metadata: "Metadata",
+    image: "Image",
+    weightsContribution: "These weights show how much each analysis pipeline contributed to the final decision.",
+    keyIndicatorsSuspicious: "Key Indicators (Suspicious Words)",
+    wordsContributedDetection: "These words contributed most significantly to the spam detection.",
+    suspiciousFeatures: "Suspicious Features",
+    metadataFeaturesContributed: "These metadata features contributed to the detection.",
+    textExtractedImage: "Text Extracted from Image",
+    ocrExtractedText: "This text was extracted from the uploaded screenshot using OCR.",
     missingInformation: "Missing Information",
     pleaseFillSenderPhone: "Please fill in the sender phone number and message content.",
     invalidPhoneNumber: "Invalid Phone Number",
@@ -649,33 +670,66 @@
     teluguLang: "Telugu",
 
     // History Page
-    analysisHistory: "Analysis History",
-    totalAnalyzed: "Total Analyzed",
     risk: "Risk",
-    noAnalysisHistoryYet: "No Analysis History Yet",
     messagesAnalyzedAppearHere: "Messages you analyze will appear here",
     analyzeFirstMessage: "Analyze Your First Message",
-    score: "Score",
-    analysisDeleted: "Analysis deleted",
-    failedToDelete: "Failed to delete",
-    deleteAnalysisQuestion: "Delete Analysis?",
     deleteAnalysisConfirmation: "This action cannot be undone. This will permanently delete this analysis from your history.",
-    deleting: "Deleting...",
 
     // Additional Settings Page keys
-    autoDeleteHistory: "Auto-delete History",
     autoDeleteDesc: "Delete analyses after 30 days",
-    deleteAccount: "Delete Account",
     deleteAccountWarning1: "This action",
-    cannotBeUndone: "cannot be undone",
     deleteAccountWarning2: " This will permanently delete your account and remove all your data including:",
-    toConfirmType: "To confirm, type",
-    below: "below:",
-    accountDataDeleted: "Account data deleted",
     accountDataDeletedDesc: "Your data has been removed. Contact support to complete account deletion.",
-    error: "Error",
     failedDeleteAccount: "Failed to delete account. Please try again.",
     user: "User",
+
+    // Homepage Statistics Section
+    fraudAmount: "₹1,247 Cr",
+    fraudAmountDesc: "Lost to SMS fraud in India (2023)",
+    ruralVictims: "67%",
+    ruralVictimsDesc: "Of victims live in rural areas",
+    dontKnowScams: "78%",
+    dontKnowScamsDesc: "Don't know how to spot scams",
+    changeOneMsgAtATime: "We're here to change this. One message at a time.",
+    topScamTargets: "Top Scam Targets in India (2023)",
+    percentageAttacks: "Percentage of total smishing attacks by sector",
+    ecommerceDelivery: "E-commerce & Delivery",
+    govSchemes: "Government Schemes",
+    lotteryPrizes: "Lottery & Prizes",
+
+    // Built on Trust Section
+    builtOnTrust: "Built on Trust, Not Hype",
+
+    // Our Solution Section
+    simpleFreeAccessible: "Simple, free, and accessible protection for everyone",
+    freeAiInstant: "Free AI that analyzes messages instantly",
+    hindiEnglishTeluguShort: "Hindi, English, Telugu",
+    worksInLanguage: "Works in your language (more coming)",
+    noTechKnowledge: "No tech knowledge needed",
+    trainedIndianScams: "Trained on Indian scam patterns",
+
+    // How It Works Section
+    aiScansDetails: "Our AI scans phone numbers, links, sender details, and message content to detect fraud patterns, phishing attempts, and suspicious behavior.",
+    fraudPatternsChecked: "47 fraud patterns specific to India are checked in every analysis.",
+
+    // Our Mission Section
+    ourMissionTitle: "Our Mission",
+    ourMissionDesc: "Make SMS fraud detection accessible to every Indian, regardless of location, education, or technology access. We believe everyone deserves to feel safe from digital scams.",
+
+    // Contact Section
+    getInTouch: "Get in Touch",
+    contactEmail: "contact@sentinelai.com",
+    contactForm: "Contact Form",
+
+    // Settings Page Additional
+    urduLang: "Urdu",
+    marathiLang: "Marathi",
+    tamilLang: "Tamil",
+
+    // About Page Additional
+    aiScansDetailsLong: "Our AI scans phone numbers, links, sender details, and message content. It compares against a database of reported scams, analyzes urgency language, threats, and information requests. Then gives you a clear verdict with explanation.",
+    ourMissionDescLong: "Make SMS fraud detection accessible to every Indian, regardless of language, location, or technical knowledge. Protect the most vulnerable communities from losing money they can't afford to lose. Build awareness through education, not fear.",
+    honestProtection: "We're just getting started. No fake numbers. No inflated claims. Just honest protection.",
   },
   hindi: {
     // Risk Score Section
@@ -1016,6 +1070,7 @@
     aboutProblem: "एक संदेश दावा करता है कि उनका आधार समाप्त हो रहा है। एक नकली बैंक सतर्कता कहती है कि उनका खाता बंद हो जाएगा। एक लॉटरी जिसमें वे कभी शामिल नहीं हुए। एक सरकारी योजना जो मौजूद नहीं है।",
     aboutProblem2: "ये संदेश आतंक पैदा करने के लिए डिज़ाइन किए गए हैं। वे आधिकारिक-सुनने वाली भाषा का उपयोग करते हैं। वे परिणाम की धमकी देते हैं। वे तत्काल कार्रवाई की मांग करते हैं।",
     aboutProblem3: "और वे काम करते हैं।",
+    howItWorks: "यह कैसे काम करता है",
     aboutStats: "2023 में अकेले, भारतीयों ने एसएमएस धोखाधड़ी से 1,200 करोड़ रुपये से अधिक खो दिए।",
     aboutMission: "हमने SentinelAI बनाया क्योंकि हर किसी को सुरक्षा के योग्य है, चाहे वह कहीं भी रहता हो या कौन सी भाषा बोलता हो।",
     problemIsReal: "समस्या वास्तविक है",
@@ -1236,7 +1291,9 @@
     // Analyze, Dashboard, History, Settings Pages (NEEDS HINDI TRANSLATION - Using English for now)
     analyzeMessageTitle: "संदेश का विश्लेषण करें",
     analysisWillBeProvided: "इस भाषा में विश्लेषण प्रदान किया जाएगा",
-    sendersNumbern: "प्रेषक का नंबर *",
+    sendersNumberLabel: "प्रेषक का नंबर *",
+    dateReceived: "प्राप्त तिथि",
+    timeReceived: "प्राप्त समय",
     phoneNumberPlaceholder: "उदा., +91 9876543210",
     enterPhoneWithCountryCode: "देश कोड के साथ फोन नंबर दर्ज करें (उदा., +91 9876543210)",
     messageTextLabel: "संदेश पाठ *",
@@ -1247,6 +1304,25 @@
     uploadingScreenshot: "स्क्रीनशॉट अपलोड हो रहा है...",
     analysisResults: "विश्लेषण परिणाम",
     analyzeAnother: "दूसरा विश्लेषण करें",
+    spam: "स्पैम",
+    ham: "सुरक्षित",
+    spamWarning: "यह संदेश स्पैम/फिशिंग प्रतीत होता है। सावधानी बरतें।",
+    legitimateMessage: "यह संदेश वैध प्रतीत होता है।",
+    pipelineBreakdown: "पाइपलाइन विश्लेषण",
+    textAnalysis: "पाठ विश्लेषण",
+    metadataAnalysis: "मेटाडेटा विश्लेषण",
+    imageAnalysis: "छवि विश्लेषण",
+    fusionWeightsUsed: "उपयोग किए गए फ्यूजन वेट",
+    text: "पाठ",
+    metadata: "मेटाडेटा",
+    image: "छवि",
+    weightsContribution: "ये वेट दिखाते हैं कि प्रत्येक विश्लेषण पाइपलाइन ने अंतिम निर्णय में कितना योगदान दिया।",
+    keyIndicatorsSuspicious: "मुख्य संकेतक (संदिग्ध शब्द)",
+    wordsContributedDetection: "इन शब्दों ने स्पैम पहचान में सबसे अधिक योगदान दिया।",
+    suspiciousFeatures: "संदिग्ध विशेषताएं",
+    metadataFeaturesContributed: "इन मेटाडेटा विशेषताओं ने पहचान में योगदान दिया।",
+    textExtractedImage: "छवि से निकाला गया पाठ",
+    ocrExtractedText: "यह पाठ OCR का उपयोग करके अपलोड किए गए स्क्रीनशॉट से निकाला गया था।",
     missingInformation: "जानकारी गायब है",
     pleaseFillSenderPhone: "कृपया प्रेषक का फोन नंबर और संदेश सामग्री भरें।",
     enterValidPhoneNumber: "कृपया देश कोड के साथ एक सही फोन नंबर दर्ज करें।",
@@ -1310,6 +1386,54 @@
     yourPreferencesSettings: "आपकी प्राथमिकताएं और सेटिंग्स",
     yourProfileInformation: "आपकी प्रोफ़ाइल जानकारी",
     languagePreferenceSaved: "भाषा प्राथमिकता सहेजी गई",
+
+    // Homepage Statistics Section
+    fraudAmount: "₹1,247 Cr",
+    fraudAmountDesc: "भारत में SMS धोखाधड़ी से खोया (2023)",
+    ruralVictims: "67%",
+    ruralVictimsDesc: "ग्रामीण क्षेत्रों में रहने वाले पीड़ित",
+    dontKnowScams: "78%",
+    dontKnowScamsDesc: "घोटालों को पहचानना नहीं जानते",
+    changeOneMsgAtATime: "हम इसे बदलने के लिए यहाँ हैं। एक संदेश के समय।",
+    topScamTargets: "भारत में शीर्ष घोटाला लक्ष्य (2023)",
+    percentageAttacks: "क्षेत्र द्वारा कुल स्मिशिंग हमलों का प्रतिशत",
+    ecommerceDelivery: "ई-कॉमर्स और डिलीवरी",
+    govSchemes: "सरकारी योजनाएं",
+    lotteryPrizes: "लॉटरी और पुरस्कार",
+
+    // Built on Trust Section
+    builtOnTrust: "विश्वास पर निर्मित, धूमधाम पर नहीं",
+
+    // Our Solution Section
+    simpleFreeAccessible: "सभी के लिए सरल, मुफ्त और सुलभ सुरक्षा",
+    freeAiInstant: "मुफ्त AI जो तुरंत संदेशों का विश्लेषण करती है",
+    hindiEnglishTeluguShort: "हिंदी, अंग्रेजी, तेलुगु",
+    worksInLanguage: "आपकी भाषा में काम करता है (और आ रहे हैं)",
+    noTechKnowledge: "कोई तकनीकी ज्ञान की आवश्यकता नहीं",
+    trainedIndianScams: "भारतीय घोटाला पैटर्न पर प्रशिक्षित",
+
+    // How It Works Section
+    aiScansDetails: "हमारा AI फौडी पैटर्न, फिशिंग प्रयासों और संदिग्ध व्यवहार का पता लगाने के लिए फोन नंबर, लिंक, भेजने वाले विवरण और संदेश सामग्री को स्कैन करती है।",
+    fraudPatternsChecked: "भारत के लिए विशिष्ट 47 धोखाधड़ी पैटर्न का हर विश्लेषण में जांच की जाती है।",
+
+    // Our Mission Section
+    ourMissionTitle: "हमारा मिशन",
+    ourMissionDesc: "स्थान, शिक्षा या प्रौद्योगिकी पहुंच की परवाह किए बिना हर भारतीय के लिए SMS धोखाधड़ी का पता लगाना सुलभ बनाना। हमारा मानना है कि हर कोई डिजिटल घोटालों से सुरक्षित महसूस करने का हकदार है।",
+
+    // Contact Section
+    getInTouch: "संपर्क में रहें",
+    contactEmail: "contact@sentinelai.com",
+    contactForm: "संपर्क फॉर्म",
+
+    // Settings Page Additional
+    urduLang: "उर्दू",
+    marathiLang: "मराठी",
+    tamilLang: "तमिल",
+
+    // About Page Additional
+    aiScansDetailsLong: "हमारी AI फोन नंबर, लिंक, भेजने वाले विवरण और संदेश सामग्री को स्कैन करती है। यह रिपोर्ट किए गए घोटालों के डेटाबेस से तुलना करती है, तात्कालिकता भाषा, धमकियों और सूचना अनुरोधों का विश्लेषण करती है। फिर स्पष्टीकरण के साथ एक स्पष्ट निर्णय देती है।",
+    ourMissionDescLong: "भाषा, स्थान या तकनीकी ज्ञान की परवाह किए बिना हर भारतीय के लिए SMS धोखाधड़ी का पता लगाना सुलभ बनाना। सबसे कमजोर समुदायों को उस पैसे को खोने से बचाना जिसे वे खो नहीं सकते। डर के माध्यम से नहीं, शिक्षा के माध्यम से जागरूकता का निर्माण।",
+    honestProtection: "हम अभी शुरुआत कर रहे हैं। कोई नकली संख्या नहीं। कोई बढ़ा-चढ़ाकर दावे नहीं। बस ईमानदार सुरक्षा।",
   },
   telugu: {
     // Risk Score Section
@@ -1646,6 +1770,7 @@
 
     // About Page
     whyWeBuiltThis: "మేము దీన్ని ఎందుకు నిర్మించాం",
+    howItWorks: "ఇది ఎలా పనిచేస్తుంది",
     aboutIntro: "ప్రతి వారం, వేలాది గ్రామీణ భారతీయులు SMS సందేశాలను అందుకుంటారు, అవి నిజమైనట్లు కనిపిస్తాయి కానీ అవి కాదు.",
     aboutProblem: "ఒక సందేశ వారి ఆధార్ గడువు ముగిసుకుందని చెప్పుకుంటుంది. నకిలీ బ్యాంకు అలర్ట్ వారి ఖాతా మూసివేయబడుతుందని చెప్పుకుంటుంది. వారు ఎన్నడూ ప్రవేశించని లాటరీ. ఏ ప్రభుత్వ పরিকల్పన ఏ సరిపెట్టిన కూడా లేనిది.",
     aboutProblem2: "ఈ సందేశాలు భయాందోళనను సృష్టించడానికి రూపొందించబడ్డాయి. వారు అధికారిక-సౌండ్ భాషను ఉపయోగిస్తారు. వారు తీవ్రతలను ధమ్మెకడతారు. వారు తక్షణ చర్యను కోరుకుంటారు.",
@@ -1864,7 +1989,9 @@
     copyrightSentinelAI: "© 2026 SentinelAI. గ్రామీణ భారతదేశాన్ని SMS మోసం నుండి రక్షించడానికి నిర్మించబడింది",
     analyzeMessageTitle: "సందేశాన్ని విశ్లేషించండి",
     analysisWillBeProvided: "ఈ భాషలో విశ్లేషణ అందించబడుతుంది",
-    sendersNumbern: "పంపినవారి నంబర్ *",
+    sendersNumberLabel: "పంపినవారి నంబర్ *",
+    dateReceived: "అందిన తేదీ",
+    timeReceived: "అందిన సమయం",
     phoneNumberPlaceholder: "ఉదా., +91 9876543210",
     enterPhoneWithCountryCode: "దేశ కోడ్‌తో ఫోన్ నంబర్ నమోదు చేయండి (ఉదా., +91 9876543210)",
     messageTextLabel: "సందేశం వచనం *",
@@ -1875,6 +2002,25 @@
     uploadingScreenshot: "స్క్రీన్‌షాట్ అప్‌లోడ్ అవుతోంది...",
     analysisResults: "విశ్లేషణ ఫలితాలు",
     analyzeAnother: "మరొకటి విశ్లేషించండి",
+    spam: "స్పామ్",
+    ham: "సురక్షితం",
+    spamWarning: "ఈ సందేశం స్పామ్/ఫిషింగ్ లాగా కనిపిస్తోంది. జాగ్రత్తగా ఉండండి।",
+    legitimateMessage: "ఈ సందేశం చట్టబద్ధంగా కనిపిస్తోంది।",
+    pipelineBreakdown: "పైప్‌లైన్ విశ్లేషణ",
+    textAnalysis: "వచన విశ్లేషణ",
+    metadataAnalysis: "మెటాడేటా విశ్లేషణ",
+    imageAnalysis: "చిత్ర విశ్లేషణ",
+    fusionWeightsUsed: "ఉపయోగించిన ఫ్యూజన్ వెయిట్లు",
+    text: "వచనం",
+    metadata: "మెటాడేటా",
+    image: "చిత్రం",
+    weightsContribution: "ఈ వెయిట్లు ప్రతి విశ్లేషణ పైప్‌లైన్ చివరి నిర్ణయంలో ఎంతవరకు దోహదపడ్డాయో చూపిస్తాయి।",
+    keyIndicatorsSuspicious: "ముఖ్య సూచనలు (అనుమానాస్పద పదాలు)",
+    wordsContributedDetection: "ఈ పదాలు స్పామ్ గుర్తింపులో అత్యధిక దోహదం చేశాయి।",
+    suspiciousFeatures: "అనుమానాస్పద లక్షణాలు",
+    metadataFeaturesContributed: "ఈ మెటాడేటా లక్షణాలు గుర్తింపులో దోహదపడ్డాయి।",
+    textExtractedImage: "చిత్రం నుండి సేకరించిన వచనం",
+    ocrExtractedText: "ఈ వచనం OCR ఉపయోగించి అప్‌లోడ్ చేసిన స్క్రీన్‌షాట్ నుండి సేకరించబడింది।",
     missingInformation: "సమాచారం లేదు",
     pleaseFillSenderPhone: "దయచేసి పంపినవారి ఫోన్ నంబర్ మరియు సందేశ కంటెంట్‌ను పూరించండి.",
     enterValidPhoneNumber: "దయచేసి దేశ కోడ్‌తో చెల్లుబాటు అయ్యే ఫోన్ నంబర్‌ను నమోదు చేయండి.",
@@ -1938,6 +2084,54 @@
     yourPreferencesSettings: "మీ ప్రాధాన్యతలు మరియు సెట్టింగ్‌లు",
     yourProfileInformation: "మీ ప్రొఫైల్ సమాచారం",
     languagePreferenceSaved: "భాష ప్రాధాన్యత సేవ్ చేయబడింది",
+
+    // Homepage Statistics Section
+    fraudAmount: "₹1,247 Cr",
+    fraudAmountDesc: "భారతదేశంలో SMS మోసం నుండి కోల్పోయిన (2023)",
+    ruralVictims: "67%",
+    ruralVictimsDesc: "గ్రామీణ ప్రాంతాలలో నివసించే బాధితులు",
+    dontKnowScams: "78%",
+    dontKnowScamsDesc: "మోసాలను ఎలా గుర్తించాలో తెలియదు",
+    changeOneMsgAtATime: "మేము దీన్ని మార్చడానికి ఇక్కడ ఉన్నాము. ఒకేసారి ఒక సందేశం.",
+    topScamTargets: "భారతదేశంలో టాప్ స్కామ్ టార్గెట్స్ (2023)",
+    percentageAttacks: "రంగం వారీగా మొత్తం స్మిషింగ్ దాడుల పాయింటేజ్",
+    ecommerceDelivery: "ఈ-కామర్స్ మరియు డెలివరీ",
+    govSchemes: "ప్రభుత్వ పథకాలు",
+    lotteryPrizes: "లాటరీ మరియు బహుమతులు",
+
+    // Built on Trust Section
+    builtOnTrust: "నమ్మకంపై నిర్మించబడింది, హైప్‌పై కాదు",
+
+    // Our Solution Section
+    simpleFreeAccessible: "అందరికీ సరళమైన, ఉచిత మరియు అందుబాటులో ఉన్న రక్షణ",
+    freeAiInstant: "తక్షణమే సందేశాలను విశ్లేషించే ఉచిత AI",
+    hindiEnglishTeluguShort: "హిందీ, ఆంగ్లం, తెలుగు",
+    worksInLanguage: "మీ భాషలో పని చేస్తుంది (మరిన్ని రాబోతున్నాయి)",
+    noTechKnowledge: "టెక్నికల్ నైపుణ్యం అవసరం లేదు",
+    trainedIndianScams: "భారతీయ స్కామ్ నమూనాలపై శిక్షణ పొందింది",
+
+    // How It Works Section
+    aiScansDetails: "మా AI మోసపూరిత నమూనాలు, ఫిషింగ్ ప్రయత్నాలు మరియు అనుమానాస్పద ప్రవర్తనను గుర్తించడానికి ఫోన్ నంబర్లు, లింక్‌లు, పంపినవారి వివరాలు మరియు సందేశ కంటెంట్‌ను స్కాన్ చేస్తుంది.",
+    fraudPatternsChecked: "ప్రతి విశ్లేషణలో భారతదేశానికి ప్రత్యేకమైన 47 మోసపూరిత నమూనాలు తనిఖీ చేయబడతాయి.",
+
+    // Our Mission Section
+    ourMissionTitle: "మా లక్ష్యం",
+    ourMissionDesc: "స్థానం, విద్య లేదా సాంకేతిక ప్రాప్యతతో సంబంధం లేకుండా ప్రతి భారతీయుడికి SMS మోసం గుర్తింపును అందుబాటులో చేయడం. డిజిటల్ స్కామ్‌ల నుండి ప్రతి ఒక్కరూ సురక్షితం అనిపించుకునే హక్కు ఉందని మేము నమ్ముతాము.",
+
+    // Contact Section
+    getInTouch: "సంప్రదించండి",
+    contactEmail: "contact@sentinelai.com",
+    contactForm: "కాంటాక్ట్ ఫారమ్",
+
+    // Settings Page Additional
+    urduLang: "ఉర్దూ",
+    marathiLang: "మరాఠీ",
+    tamilLang: "తమిళ",
+
+    // About Page Additional
+    aiScansDetailsLong: "మా AI ఫోన్ నంబర్లు, లింక్‌లు, పంపినవారి వివరాలు మరియు సందేశ కంటెంట్‌ను స్కాన్ చేస్తుంది. ఇది నివేదించిన స్కామ్‌ల డేటాబేస్‌తో పోల్చుతుంది, అత్యవసర భాష, బెదిరింపులు మరియు సమాచార అభ్యర్థనలను విశ్లేషిస్తుంది. అప్పుడు వివరణతో స్పష్టమైన తీర్పు ఇస్తుంది.",
+    ourMissionDescLong: "భాష, స్థానం లేదా సాంకేతిక జ్ఞానంతో సంబంధం లేకుండా ప్రతి భారతీయుడికి SMS మోసం గుర్తింపును అందుబాటులో చేయడం. అత్యంత హాని చేయగల సంఘాలను వారు కోల్పోలేని డబ్బును కోల్పోకుండా రక్షించడం. భయం ద్వారా కాకుండా, విద్య ద్వారా అవగాహన పంపొందించడం.",
+    honestProtection: "మేము ఇప్పుడే ప్రారంభించాము. నకిలీ సంఖ్యలు లేవు. అధిక దావాలు లేవు. కేవలం నిజాయితీ రక్షణ.",
   },
   marathi: {
     // Risk Score Section
@@ -2249,6 +2443,61 @@
     yourPreferencesSettings: "आपली प्राधान्ये आणि सेटिंग्ज",
     yourProfileInformation: "आपली प्रोफाइल माहिती",
     languagePreferenceSaved: "भाषा प्राधान्य जतन केले",
+
+    // Homepage Statistics Section
+    fraudAmount: "₹1,247 Cr",
+    fraudAmountDesc: "भारतात SMS फसवणुकीतून गमावले (2023)",
+    ruralVictims: "67%",
+    ruralVictimsDesc: "पीडित ग्रामीण भागात राहतात",
+    dontKnowScams: "78%",
+    dontKnowScamsDesc: "स्कॅम कसे ओळखावे हे माहित नाही",
+    changeOneMsgAtATime: "आमनी हे बदलण्यासाठी येथे आहोत. एकावेळी एक संदेश.",
+    topScamTargets: "भारतातील टॉप स्कॅम लक्ष्ये (2023)",
+    percentageAttacks: "क्षेत्रानुसार एकूण स्मिशिंग हल्ल्यांची टक्केवारी",
+    ecommerceDelivery: "ई-कॉमर्स आणि डिलिव्हरी",
+    govSchemes: "सरकारी योजना",
+    lotteryPrizes: "लॉटरी आणि बक्षिसे",
+
+    // Built on Trust Section
+    builtOnTrust: "विश्वासावर बनवलेले, हाईपवर नाही",
+
+    // Our Solution Section
+    simpleFreeAccessible: "सर्वांसाठी सरल, मोफत आणि प्रवेशयोग्य संरक्षण",
+    freeAiInstant: "मोफत AI जी तत्काळ संदेशांचे विश्लेषण करते",
+    hindiEnglishTeluguShort: "हिंदी, इंग्रजी, तेलुगु",
+    worksInLanguage: "आपल्या भाषेत काम करते (अधिक येत आहेत)",
+    builtForEveryone: "सर्वांसाठी बनवलेले",
+    noTechKnowledge: "कोणत्याही तांत्रिक ज्ञानाची गरज नाही",
+    messagesEncrypted: "संदेश एन्क्रिप्टेड आणि 30 दिवसांनंतर हटवले",
+    trainedIndianScams: "भारतीय स्कॅम पॅटर्नवर प्रशिक्षित",
+    noAdsTracking: "कोणत्या जाहिराती, ट्रॅकिंग, छुप्या खर्च नाहीत",
+
+    // How It Works Section
+    aiScansDetails: "आमची AI फसवणूक पॅटर्न, फिशिंग प्रयत्न आणि संशयास्पद वर्तन ओळखण्यासाठी फोन नंबर, लिंक्स, पाठवणारे तपशील आणि संदेश सामग्री स्कॅन करते.",
+    fraudPatternsChecked: "प्रत्येक विश्लेषणात भारतासाठी विशिष्ट 47 फसवणूक पॅटर्न तपासले जातात.",
+
+    // Our Mission Section
+    ourMissionTitle: "आमचे मिशन",
+    ourMissionDesc: "स्थान, शिक्षण किंवा तंत्रज्ञान प्रवेश न पाहता प्रत्येक भारतीयासाठी SMS फसवणूक शोध प्रवेशयोग्य बनवणे. आमचा असा विश्वास आहे की प्रत्येकाला डिजिटल स्कॅम्सपासून सुरक्षित वाटण्याचा हक्क आहे.",
+
+    // Contact Section
+    getInTouch: "संपर्कात रहा",
+    contactEmail: "contact@sentinelai.com",
+    contactForm: "संपर्क फॉर्म",
+    responseTime: "प्रतिसाद वेळ: सामान्यतः 24 तासांत",
+
+    // Settings Page Additional
+    urduLang: "उर्दू",
+    marathiLang: "मराठी",
+    tamilLang: "तमिळ",
+
+    // About Page Additional
+    moreAlarmingFacts: "आणखी चिंताजनक तथ्ये",
+    howItWorks: "हे कैसे काम करता है",
+    whyRuralTargeted: "ग्रामीण भागांना का लक्ष्य बनवले जाते",
+    aiScansDetailsLong: "आमची AI फोन नंबर, लिंक्स, पाठवणारे तपशील आणि संदेश सामग्री स्कॅन करते. ते नोंदवलेल्या स्कॅम्सच्या डेटाबेसशी तुलना करते, तातडीची भाषा, धमक्या आणि माहिती विनंत्यांचे विश्लेषण करते. मग स्पष्टीकरणासह स्पष्ट निकाल देते.",
+    ourMissionDescLong: "भाषा, स्थान किंवा तांत्रिक ज्ञानाची पर्वा न करता प्रत्येक भारतीयासाठी SMS फसवणूक शोध सुलभ बनवणे. सर्वात असुरक्षित समुदायांना ते गमावू शकत नसलेले पैसे गमावण्यापासून संरक्षण करणे. भयाने नाही तर शिक्षणाद्वारे जाणीव निर्माण करणे.",
+    honestProtection: "आम्ही नुकतेच सुरुवात केली आहे. कोणतेही बनावट नंबर नाहीत. कोणतेही फुगवलेले दावे नाहीत. फक्त प्रामाणिक संरक्षण.",
   },
   urdu: {
     // Risk Score Section
@@ -2456,6 +2705,7 @@
 
     // About Page
     whyWeBuiltThis: "ہم نے یہ کیوں بنایا",
+    howItWorks: "یہ کیسے کام کرتا ہے",
     aboutIntro: "ہر ہفتے، افراد کی لاکھوں دیہی بھارتیوں کو ایسے SMS پیغام موصول ہوتے ہیں جو اصل ہیں لیکن نہیں ہیں۔",
     aboutProblem: "ایک پیغام کہتا ہے کہ ان کا آدھار ختم ہو رہا ہے۔ ایک جعلی بینک الرٹ کہتا ہے کہ ان کا اکاؤنٹ بند ہو جائے گا۔ ایک لاٹری جس میں وہ کبھی داخل نہیں ہوے۔ ایک حکومتی اسکیم جو موجود نہیں ہے۔",
     aboutProblem2: "یہ پیغام سفید ڈر پیدا کرنے کے لیے ڈیزائن کیے گئے ہیں۔ وہ سرکاری آواز کی زبان استعمال کرتے ہیں۔ وہ نتائج کی دھمکی دیتے ہیں۔ وہ فوری کارروائی کا مطالبہ کرتے ہیں۔",
@@ -2749,6 +2999,54 @@
     yourPreferencesSettings: "آپ کی ترجیحات اور ترتیبات",
     yourProfileInformation: "آپ کی پروفائل کی معلومات",
     languagePreferenceSaved: "زبان کی ترجیح محفوظ کی گئی",
+
+    // Homepage Statistics Section
+    fraudAmount: "₹1,247 Cr",
+    fraudAmountDesc: "ہندوستان میں SMS فریب سے ضائع (2023)",
+    ruralVictims: "67%",
+    ruralVictimsDesc: "شکار دیہی علاقوں میں رہتے ہیں",
+    dontKnowScams: "78%",
+    dontKnowScamsDesc: "فریبوں کو کیسے پہچانا جائے نہیں جانتے",
+    changeOneMsgAtATime: "ہم یہ تبدیل کرنے کے لیے یہاں ہیں۔ ایک وقت میں ایک پیغام۔",
+    topScamTargets: "ہندوستان میں ٹاپ اسکام ہدف (2023)",
+    percentageAttacks: "سیکٹر کے ذریعے کل اسمشنگ حملوں کا فیصد",
+    ecommerceDelivery: "ای کامرس اور ڈیلیوری",
+    govSchemes: "حکومتی اسکیمز",
+    lotteryPrizes: "لاٹری اور انعامات",
+
+    // Built on Trust Section
+    builtOnTrust: "اعتماد پر بنایا گیا، ہائپ پر نہیں",
+
+    // Our Solution Section
+    simpleFreeAccessible: "سب کے لیے آسان، مفت اور قابل رسائی تحفظ",
+    freeAiInstant: "مفت AI جو فوری طور پر پیغامات کا تجزیہ کرتا ہے",
+    hindiEnglishTeluguShort: "ہندی، انگریزی، تیلگو",
+    worksInLanguage: "آپ کی زبان میں کام کرتا ہے (مزید آرہے ہیں)",
+    noTechKnowledge: "کوئی تکنیکی علم درکار نہیں",
+    trainedIndianScams: "ہندوستانی اسکام پیٹرن پر تربیت یافتہ",
+
+    // How It Works Section
+    aiScansDetails: "ہماری AI فراڈ پیٹرن، فشنگ کی کوششوں اور مشکوک رفتار کی شناخت کے لیے فون نمبروں، لنکس، بھیجنے والے کی تفصیلات اور پیغام مواد کو اسکین کرتی ہے۔",
+    fraudPatternsChecked: "ہر تجزیے میں ہندوستان کے لیے مخصوص 47 فراڈ پیٹرن کی جانچ کی جاتی ہے۔",
+
+    // Our Mission Section
+    ourMissionTitle: "ہمارا مشن",
+    ourMissionDesc: "محل وقوع، تعلیم یا ٹیکنالوجی رسائی سے قطع نظر ہر ہندوستانی کے لیے SMS فریب کی شناخت کو قابل رسائی بنانا۔ ہمارا خیال ہے کہ ہر ایک کو ڈیجیٹل اسکامز سے محفوظ محسوس کرنے کا حق ہے۔",
+
+    // Contact Section
+    getInTouch: "رابطہ کریں",
+    contactEmail: "contact@sentinelai.com",
+    contactForm: "رابطہ فارم",
+
+    // Settings Page Additional
+    urduLang: "اردو",
+    marathiLang: "مراٹھی",
+    tamilLang: "تمل",
+
+    // About Page Additional
+    aiScansDetailsLong: "ہماری AI فون نمبروں، لنکس، بھیجنے والے کی تفصیلات اور پیغام مواد کو اسکین کرتی ہے۔ یہ رپورٹ شدہ اسکامز کے ڈیٹابیس سے موازنہ کرتی ہے، فوری زبان، دھمکیاں اور معلومات کی درخواستوں کا تجزیہ کرتی ہے۔ پھر وضاحت کے ساتھ واضح فیصلہ دیتی ہے۔",
+    ourMissionDescLong: "زبان، مقام یا تکنیکی علم سے قطع نظر ہر ہندوستانی کے لیے SMS فریب کی شناخت کو قابل رسائی بنانا۔ سب سے زیادہ کمزور کمیونٹیز کو اس پیسے کو کھونے سے بچانا جو وہ کھو نہیں سکتے۔ خوف کے ذریعے نہیں بلکہ تعلیم کے ذریعے بیداری پیدا کرنا۔",
+    honestProtection: "ہم ابھی شروعات کر رہے ہیں۔ کوئی جعلی نمبر نہیں۔ کوئی مبالغہ آرائی نہیں۔ بس ایماندار تحفظ۔",
     },
   tamil: {
     // Navigation
@@ -2943,6 +3241,7 @@
     aiAnalysis: "AI பகுப்பாய்வு",
     weCheck47: "நாங்கள் 47 தெரிந்த மோசடி வடிவங்களை சரிபார்க்கிறோம்",
     getVerdict: "முடிவு பெறுங்கள்",
+    howItWorks: "எப்படி வேலை செய்கிறது",
     clearAnswer: "தெளிவான பதில்: பாதுகாப்பான, சந்தேகத்திற்குரிய, அல்லது மோசடி",
     takeAction: "நடவடிக்கை எடுங்கள்",
     simpleStepsInLanguage: "உங்கள் மொழியில் எளிய படிகள்",
@@ -3178,6 +3477,52 @@
     yourPreferencesSettings: "உங்கள் விருப்பத்தேர்வுகள் மற்றும் அமைப்புகள்",
     yourProfileInformation: "உங்கள் சுயவிவர தகவல்",
     languagePreferenceSaved: "மொழி விருப்பம் சேமிக்கப்பட்டது",
+
+    // Homepage Statistics Section
+    fraudAmount: "₹1,247 கோடி",
+    fraudAmountDesc: "இந்தியாவில் SMS மோசடியால் இழந்தது (2023)",
+    ruralVictims: "67%",
+    ruralVictimsDesc: "பாதிக்கப்பட்டவர்கள் கிராமப்புறங்களில் வாழ்கின்றனர்",
+    dontKnowScams: "78%",
+    dontKnowScamsDesc: "மோசடிகளை எப்படி அடையாளம் காண்பது என்று தெரியாது",
+    changeOneMsgAtATime: "நாங்கள் இதை மாற்ற இங்கே இருக்கிறோம். ஒரு நேரத்தில் ஒரு செய்தி.",
+    topScamTargets: "இந்தியாவில் முக்கிய மோசடி இலக்குகள் (2023)",
+    percentageAttacks: "துறை வாரியாக மொத்த ஸ்மிஷிங் தாக்குதல்களின் சதவீதம்",
+    ecommerceDelivery: "ஈ-காமர்ஸ் மற்றும் டெலிவரி",
+    govSchemes: "அரசாங்க திட்டங்கள்",
+    lotteryPrizes: "லாட்டரி மற்றும் பரிசுகள்",
+
+    // Built on Trust Section
+    builtOnTrust: "நம்பிக்கையில் கட்டப்பட்டது, ஹைபில் அல்ல",
+
+    // Our Solution Section
+    simpleFreeAccessible: "அனைவருக்கும் எளிய, இலவச மற்றும் அணுகக்கூடிய பாதுகாப்பு",
+    freeAiInstant: "உடனடியாக செய்திகளை பகுப்பாய்வு செய்யும் இலவச AI",
+    hindiEnglishTeluguShort: "இந்தி, ஆங்கிலம், தெலுங்கு",
+    worksInLanguage: "உங்கள் மொழியில் வேலை செய்கிறது (மேலும் வரும்)",
+    noTechKnowledge: "தொழில்நுட்ப அறிவு தேவையில்லை",
+    // How It Works Section
+    aiScansDetails: "எங்கள் AI மோசடி வடிவங்கள், ஃபிஷிங் முயற்சிகள் மற்றும் சந்தேகத்திற்குரிய நடத்தையை கண்டறிய ஃபோன் எண்கள், இணைப்புகள், அனுப்புநர் விவரங்கள் மற்றும் செய்தி உள்ளடக்கத்தை ஸ்கேன் செய்கிறது.",
+    fraudPatternsChecked: "ஒவ்வொரு பகுப்பாய்விலும் இந்தியாவிற்கு குறிப்பிட்ட 47 மோசடி வடிவங்கள் சரிபார்க்கப்படுகின்றன.",
+
+    // Our Mission Section
+    ourMissionTitle: "எங்கள் நோக்கம்",
+    ourMissionDesc: "இடம், கல்வி அல்லது தொழில்நுட்ப அணுகலைப் பொருட்படுத்தாமல் ஒவ்வொரு இந்தியனுக்கும் SMS மோசடி கண்டறிதலை அணுகக்கூடியதாக மாற்றுவது. டிஜிட்டல் மோசடிகளிலிருந்து பாதுகாப்பாக உணர ஒவ்வொருவரும் உரிமை உண்டு என்று நாங்கள் நம்புகிறோம்.",
+
+    // Contact Section
+    getInTouch: "தொடர்பில் இருங்கள்",
+
+
+    // Settings Page Additional
+    urduLang: "உர்து",
+    marathiLang: "மராத்தி",
+    tamilLang: "தமிழ்",
+
+    // About Page Additional
+    digitalDivideVulnerable: "ஸ்கேமர்கள் கிராமப்புற சமூகங்களுக்கு மோசடி கல்வியில் குறைந்த அணுகல் உள்ளது என்று அறிவார்கள். பலர் ஆங்கிலம் பேசுவதில்லை, அங்கு பெரும்பாலான மோசடி எச்சரிக்கைகள் வெளியிடப்படுகின்றன. டிஜிட்டல் பிரிவு அவர்களை பாதிக்கப்படக்கூடியதாக ஆக்குகிறது.",
+    aiScansDetailsLong: "எங்கள் AI ஃபோன் எண்கள், இணைப்புகள், அனுப்புநர் விவரங்கள் மற்றும் செய்தி உள்ளடக்கத்தை ஸ்கேன் செய்கிறது. இது புகாரளிக்கப்பட்ட மோசடிகளின் தரவுத்தளத்துடன் ஒப்பிடுகிறது, அவசர மொழி, அச்சுறுத்தல்கள் மற்றும் தகவல் கோரிக்கைகளை பகுப்பாய்வு செய்கிறது. பின்னர் விளக்கத்துடன் தெளிவான தீர்ப்பு அளிக்கிறது.",
+    ourMissionDescLong: "மொழி, இடம் அல்லது தொழில்நுட்ப அறிவைப் பொருட்படுத்தாமல் ஒவ்வொரு இந்தியனுக்கும் SMS மோசடி கண்டறிதலை அணுகக்கூடியதாக மாற்றுவது. மிகவும் பாதிக்கப்படக்கூடிய சமூகங்களை அவர்கள் இழக்க முடியாத பணத்தை இழப்பதிலிருந்து பாதுகாப்பது. பயம் மூலம் அல்ல, கல்வி மூலம் விழிப்புணர்வை உருவாக்குவது.",
+    honestProtection: "நாங்கள் இப்போது தொடங்கி இருக்கிறோம். போலி எண்கள் இல்லை. மிகைப்படுத்தப்பட்ட கூற்றுகள் இல்லை. வெறும் நேர்மையான பாதுகாப்பு.",
 },
 
 };

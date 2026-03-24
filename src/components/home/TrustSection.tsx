@@ -20,7 +20,7 @@ export function TrustSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-            Built on Trust, Not Hype
+            {t("builtOnTrust")}
           </h2>
         </div>
 
@@ -51,7 +51,7 @@ export function TrustSection() {
         </div>
 
         <p className="text-center text-white/50 max-w-xl mx-auto text-sm">
-          We're just getting started. No fake numbers. No inflated claims. Just honest protection.
+          {t("honestProtection")}
         </p>
       </div>
     </section>

@@ -12,7 +12,6 @@ import { Footer } from "@/components/Footer";
 import { toast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/use-translation";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AnalysisReport } from "@/components/dashboard/AnalysisReport";
 import { AIChatbot } from "@/components/dashboard/AIChatbot";
 import { AnalysisResult as AnalysisResultComponent } from "@/components/features/AnalysisResult";
 import { useAuth } from "@/contexts/AuthContext";
@@ -473,7 +472,7 @@ export default function Analyze() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MessageSquare className="h-5 w-5 text-primary" />
-                  Analyze Message
+                  {t("analyzeMessageTitle")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -481,7 +480,7 @@ export default function Analyze() {
                 <div className="space-y-2">
                   <Label className="flex items-center gap-2">
                     <Languages className="h-4 w-4" />
-                    Select Language
+                    {t("selectLanguage")}
                   </Label>
                   <Select
                     value={formData.language}
@@ -496,29 +495,29 @@ export default function Analyze() {
                       <SelectItem value="telugu">తెలుగు (Telugu)</SelectItem>
                     </SelectContent>
                   </Select>
-                  <p className="text-xs text-muted-foreground">Analysis will be provided in this language</p>
+                  <p className="text-xs text-muted-foreground">{t("analysisWillBeProvided")}</p>
                 </div>
 
                 {/* Phone Number */}
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="flex items-center gap-2">
                     <Phone className="h-4 w-4" />
-                    Sender's Number *
+                    {t("sendersNumberLabel")}
                   </Label>
                   <div className="relative">
                     <Input
                       id="phone"
                       type="tel"
                       inputMode="tel"
-                      placeholder="e.g., +91 9876543210"
+                      placeholder={t("phoneNumberPlaceholder")}
                       value={formData.phone}
                       onChange={handlePhoneChange}
                       onKeyPress={handlePhoneKeyPress}
                       className={`pr-10 transition-colors ${
-                        phoneValid === true 
-                          ? "border-success focus-visible:ring-success" 
+                        phoneValid === true
+                          ? "border-success focus-visible:ring-success"
                           : phoneError
-                          ? "border-destructive focus-visible:ring-destructive" 
+                          ? "border-destructive focus-visible:ring-destructive"
                           : ""
                       }`}
                     />
@@ -527,7 +526,7 @@ export default function Analyze() {
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Enter phone number with country code (e.g., +91 9876543210)
+                    {t("enterPhoneWithCountryCode")}
                   </p>
                   {phoneError && (
                     <p className="text-xs text-destructive animate-pulse">{phoneError}</p>
@@ -538,11 +537,11 @@ export default function Analyze() {
                 <div className="space-y-2">
                   <Label htmlFor="message" className="flex items-center gap-2">
                     <MessageSquare className="h-4 w-4" />
-                    Message Text *
+                    {t("messageTextLabel")}
                   </Label>
                   <Textarea
                     id="message"
-                    placeholder="Paste the suspicious message here..."
+                    placeholder={t("pasteSuspiciousMessage")}
                     className="min-h-[160px]"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -558,7 +557,7 @@ export default function Analyze() {
                   <div className="space-y-2">
                     <Label htmlFor="date" className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
-                      Date Received
+                      {t("dateReceived")}
                     </Label>
                     <Input
                       id="date"
@@ -571,7 +570,7 @@ export default function Analyze() {
                   <div className="space-y-2">
                     <Label htmlFor="time" className="flex items-center gap-2">
                       <Clock className="h-4 w-4" />
-                      Time Received
+                      {t("timeReceived")}
                     </Label>
                     <Input
                       id="time"
@@ -587,7 +586,7 @@ export default function Analyze() {
                 <div className="space-y-2">
                   <Label className="flex items-center gap-2">
                     <Upload className="h-4 w-4" />
-                    Screenshot (Optional)
+                    {t("screenshotOptional")}
                   </Label>
                   <input
                     ref={fileInputRef}
@@ -612,10 +611,10 @@ export default function Analyze() {
                     >
                       <Upload className="h-6 w-6 mx-auto text-muted-foreground mb-2" />
                       <p className="text-sm text-muted-foreground">
-                        Click to upload or drag and drop
+                        {t("clickToUploadOrDrag")}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        Max 5MB • PNG, JPG
+                        {t("maxFileSizePngJpg")}
                       </p>
                     </div>
                   ) : (
@@ -655,12 +654,12 @@ export default function Analyze() {
                   {isAnalyzing || isUploading || analysisLoading ? (
                     <>
                       <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-                      {isUploading ? "Uploading screenshot..." : loadingMessage}
+                      {isUploading ? t("uploadingScreenshot") : loadingMessage}
                     </>
                   ) : (
                     <>
                       <ShieldCheck className="h-5 w-5 mr-2" />
-                      Analyze Message
+                      {t("analyzeMessageTitle")}
                     </>
                   )}
                 </Button>
@@ -701,7 +700,7 @@ export default function Analyze() {
                     <div className="h-px flex-1 bg-border w-8" />
                     <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                       <Shield className="h-4 w-4 text-primary" />
-                      Analysis Results
+                      {t("analysisResults")}
                     </div>
                     <div className="h-px flex-1 bg-border w-8" />
                   </div>
@@ -717,25 +716,13 @@ export default function Analyze() {
                     }}
                   >
                     <ArrowUp className="h-4 w-4 mr-1" />
-                    Analyze Another
+                    {t("analyzeAnother")}
                   </Button>
                 </div>
 
                 <AnalysisResultComponent result={sentinelResult} />
 
-                {/* Legacy AnalysisReport - Keep for additional context */}
-                {analysisResult && (
-                  <div className="mt-8">
-                    <AnalysisReport result={analysisResult} language={formData.language} />
-                  </div>
-                )}
-
-                {/* AI Chatbot */}
-                {analysisResult && (
-                  <div className="mt-8">
-                    <AIChatbot result={analysisResult} language={formData.language} messageContent={formData.message} />
-                  </div>
-                )}
+                {/* Note: AI Chatbot is now available as a floating widget in bottom-right corner */}
               </div>
             )}
 
@@ -747,7 +734,7 @@ export default function Analyze() {
                     <div className="h-px flex-1 bg-border w-8" />
                     <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                       <Shield className="h-4 w-4 text-primary" />
-                      Analysis Results
+                      {t("analysisResults")}
                     </div>
                     <div className="h-px flex-1 bg-border w-8" />
                   </div>
@@ -763,7 +750,7 @@ export default function Analyze() {
                     }}
                   >
                     <ArrowUp className="h-4 w-4 mr-1" />
-                    Analyze Another
+                    {t("analyzeAnother")}
                   </Button>
                 </div>
                 <AnalysisReport result={analysisResult} language={formData.language} />

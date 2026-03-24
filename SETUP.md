@@ -7,7 +7,7 @@
 Everything below is **already done** for the live deployment. This section is a record of where things stand.
 
 ### What's working
-- [x] Vercel deployment live at `sentinelai-web-app.vercel.app`
+- [x] Vercel deployment live at `sentinelfrontend.vercel.app`
 - [x] Google OAuth login working
 - [x] Supabase auth + database connected
 - [x] SentinelAI favicon (replaced Lovable logo)
@@ -112,7 +112,7 @@ If you want Google sign-in to work:
 | What | Where |
 |---|---|
 | Supabase project | [supabase.com/dashboard/project/aropfnepavvqutztpaop](https://supabase.com/dashboard/project/aropfnepavvqutztpaop) |
-| Vercel deployment | [sentinelai-web-app.vercel.app](https://sentinelai-web-app.vercel.app) |
+| Vercel deployment | [sentinelfrontend.vercel.app](https://sentinelfrontend.vercel.app) |
 | Groq API key | [console.groq.com](https://console.groq.com) |
 | Edge function logs | Supabase dashboard → Edge Functions |
 | Vercel logs | Vercel dashboard → Deployments |

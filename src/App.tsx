@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import { LanguageProvider } from "@/hooks/use-language";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { FloatingChatbot } from "@/components/FloatingChatbot";
 import { lazy, Suspense } from "react";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -89,6 +90,9 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             </Suspense>
+
+            {/* Global Floating Chatbot - Available on all pages */}
+            <FloatingChatbot />
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>

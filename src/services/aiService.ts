@@ -112,3 +112,22 @@ export async function chatWithAssistant(
 
   return data.response;
 }
+
+export async function chatWithGeneralAssistant(
+  userQuestion: string,
+  language: Language
+): Promise<string> {
+  const { data, error } = await supabase.functions.invoke<ChatResponse>("general-chat", {
+    body: { userQuestion, language },
+  });
+
+  if (error) {
+    throw new Error(error.message || "Chat failed");
+  }
+
+  if (!data) {
+    throw new Error("No response from chat service");
+  }
+
+  return data.response;
+}

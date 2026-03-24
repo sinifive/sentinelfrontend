@@ -11,7 +11,7 @@
 | **Name** | SentinelAI |
 | **Mission** | Empower every Indian to identify and prevent SMS fraud (smishing) through accessible AI technology |
 | **Target Audience** | Rural India |
-| **Live URL** | https://sentinelai-web-app.vercel.app |
+| **Live URL** | https://sentinelfrontend.vercel.app |
 | **Languages** | English, Hindi (हिंदी), Telugu (తెలుగు) |
 | **Repository** | React + Vite standalone project |
 

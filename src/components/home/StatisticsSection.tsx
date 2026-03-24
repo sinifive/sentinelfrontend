@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp, Shield } from "lucide-react";
+import { useTranslation } from "@/hooks/use-translation";
 import {
   ResponsiveContainer,
   BarChart,
@@ -11,47 +12,49 @@ import {
   LabelList,
 } from "recharts";
 
-const sectorData = [
-  { sector: "Banking & Finance", percentage: 43 },
-  { sector: "E-commerce & Delivery", percentage: 28 },
-  { sector: "Government Schemes", percentage: 18 },
-  { sector: "Lottery & Prizes", percentage: 11 },
-];
-
-const stats = [
-  {
-    value: "₹1,247 Cr",
-    label: "Lost to SMS fraud in India (2023)",
-    borderColor: "border-l-destructive",
-    valueColor: "text-destructive",
-    icon: TrendingUp,
-    iconColor: "text-destructive",
-  },
-  {
-    value: "67%",
-    label: "Of victims live in rural areas",
-    borderColor: "border-l-warning",
-    valueColor: "text-warning",
-    icon: TrendingUp,
-    iconColor: "text-warning",
-  },
-  {
-    value: "78%",
-    label: "Don't know how to spot scams",
-    borderColor: "border-l-primary",
-    valueColor: "text-primary",
-    icon: Shield,
-    iconColor: "text-primary",
-  },
-];
-
 export function StatisticsSection() {
+  const { t } = useTranslation();
+
+  const sectorData = [
+    { sector: t("bankingFinance"), percentage: 43 },
+    { sector: t("ecommerceDelivery"), percentage: 28 },
+    { sector: t("govSchemes"), percentage: 18 },
+    { sector: t("lotteryPrizes"), percentage: 11 },
+  ];
+
+  const stats = [
+    {
+      value: t("fraudAmount"),
+      label: t("fraudAmountDesc"),
+      borderColor: "border-l-destructive",
+      valueColor: "text-destructive",
+      icon: TrendingUp,
+      iconColor: "text-destructive",
+    },
+    {
+      value: t("ruralVictims"),
+      label: t("ruralVictimsDesc"),
+      borderColor: "border-l-warning",
+      valueColor: "text-warning",
+      icon: TrendingUp,
+      iconColor: "text-warning",
+    },
+    {
+      value: t("dontKnowScams"),
+      label: t("dontKnowScamsDesc"),
+      borderColor: "border-l-primary",
+      valueColor: "text-primary",
+      icon: Shield,
+      iconColor: "text-primary",
+    },
+  ];
+
   return (
     <section id="statistics" className="py-20 bg-muted">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            The Problem Is Real
+            {t("problemIsReal")}
           </h2>
         </div>
 
@@ -74,17 +77,17 @@ export function StatisticsSection() {
         </div>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          We're here to change this. One message at a time.
+          {t("changeOneMsgAtATime")}
         </p>
 
         {/* Horizontal Bar Chart */}
         <Card className="bg-card border-border">
           <CardHeader className="text-center">
             <CardTitle className="text-xl font-bold">
-              Top Scam Targets in India (2023)
+              {t("topScamTargets")}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
-              Percentage of total smishing attacks by sector
+              {t("percentageAttacks")}
             </p>
           </CardHeader>
           <CardContent>
