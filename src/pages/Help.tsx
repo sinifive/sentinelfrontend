@@ -133,14 +133,8 @@ export default function Help() {
             <Card className="bg-primary/5 border-primary/20 mt-12">
               <CardContent className="p-6 text-center">
                 <p className="text-foreground mb-2">Still have questions?</p>
-                <a 
-                  href="mailto:support@sentinelai.com" 
-                  className="text-primary hover:underline font-medium"
-                >
-                  Email us: support@sentinelai.com
-                </a>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Response time: Usually within 24 hours
+                  Try our chatbot or visit the FAQ section
                 </p>
               </CardContent>
             </Card>

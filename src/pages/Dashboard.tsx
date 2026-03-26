@@ -358,7 +358,7 @@ export default function Dashboard() {
         doList.push("Report to cybercrime.gov.in if you shared any info", "Inform family members about this scam type");
         dontList.push("Don't share OTPs, passwords, or PINs", "Don't call back the sender");
       } else {
-        do List.push("This message appears safe to proceed");
+        doList.push("This message appears safe to proceed");
         if (textScore && textScore > 0.2) doList.push("Verify through official channels if requesting sensitive info");
         if (!formData.inContacts) doList.push("Save the number if this is a legitimate contact");
         doList.push("Keep for your records");

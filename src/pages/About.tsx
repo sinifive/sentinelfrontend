@@ -1,10 +1,10 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Shield, 
-  Target, 
-  Users, 
+import {
+  Shield,
+  Target,
+  Users,
   Zap,
   Globe,
   Lock,
@@ -12,8 +12,7 @@ import {
   AlertTriangle,
   TrendingUp,
   MapPin,
-  Phone,
-  Mail
+  Github
 } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 
@@ -239,25 +238,20 @@ export default function About() {
           </div>
         </section>
 
-        {/* Contact */}
+        {/* GitHub */}
         <section className="bg-secondary/30 py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-xl mx-auto text-center">
-              <h2 className="text-2xl font-bold text-foreground mb-6">{t("getInTouch")}</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">Open Source Project</h2>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                 <a
-                  href={`mailto:${t("contactEmail")}`}
+                  href="https://github.com/sinifive/sentinelfrontend"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 >
-                  <Mail className="h-5 w-5" />
-                  {t("contactEmail")}
-                </a>
-                <a
-                  href="/contact"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Phone className="h-5 w-5" />
-                  {t("contactForm")}
+                  <Github className="h-5 w-5" />
+                  View on GitHub
                 </a>
               </div>
             </div>

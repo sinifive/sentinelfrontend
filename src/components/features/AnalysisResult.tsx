@@ -1,15 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { MessageSquare, Link, Image, Shield, TrendingUp, AlertTriangle } from "lucide-react";
+import { MessageSquare, Link, Image, Shield, TrendingUp, AlertTriangle, Sparkles, Loader2 } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 import type { SentinelResponse } from "@/services/sentinelApiService";
 
 interface AnalysisResultProps {
   result: SentinelResponse;
+  justification?: string;
+  justificationLoading?: boolean;
+  justificationError?: boolean;
 }
 
-export function AnalysisResult({ result }: AnalysisResultProps) {
+export function AnalysisResult({ result, justification, justificationLoading, justificationError }: AnalysisResultProps) {
   const { t } = useTranslation();
   const isSpam = result.decision === "SPAM";
   const riskPercentage = Math.round(result.final_score * 100);
@@ -63,7 +66,43 @@ export function AnalysisResult({ result }: AnalysisResultProps) {
         </CardContent>
       </Card>
 
-      {/* Section 2 - Pipeline Breakdown */}
+      {/* Section 2 - AI Justification */}
+      <Card className="bg-card border-border">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base">
+            <Sparkles className="h-5 w-5 text-primary" />
+            {t("justification")}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {justificationLoading ? (
+            <div className="flex items-center gap-3 text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              <span className="text-sm">{t("loadingJustification")}</span>
+            </div>
+          ) : justificationError ? (
+            <p className="text-sm text-muted-foreground italic">
+              {t("justificationError")}
+            </p>
+          ) : justification ? (
+            <div className="space-y-4">
+              <blockquote className={`border-l-4 ${isSpam ? "border-destructive" : "border-success"} bg-secondary/50 p-4 rounded-r-lg overflow-visible h-auto w-full`}>
+                <p className="text-base leading-relaxed break-words whitespace-pre-wrap hyphens-auto w-full" style={{ lineHeight: '1.7', maxWidth: '100%', wordWrap: 'break-word', overflowWrap: 'break-word' }}>{justification}</p>
+              </blockquote>
+              <p className="text-xs text-muted-foreground">
+                {t("justificationDesc")}
+              </p>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3 text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              <span className="text-sm">{t("loadingJustification")}</span>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Section 3 - Pipeline Breakdown */}
       <Card className="bg-card border-border">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">

@@ -7,14 +7,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Shield, Search, Calendar, Clock, Phone, MessageSquare, Languages, Loader2, Info, CheckCircle, ArrowRight, Upload, X, Image, ShieldCheck } from "lucide-react";
+import { Shield, Calendar, Clock, Phone, MessageSquare, Languages, Loader2, Info, CheckCircle, ArrowRight, Upload, X, Image, ShieldCheck } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { toast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/use-translation";
-import { AnalysisReport } from "@/components/dashboard/AnalysisReport";
-import { AIChatbot } from "@/components/dashboard/AIChatbot";
-import type { AnalysisResult } from "@/types";
+import { AnalysisResult as AnalysisResultComponent } from "@/components/features/AnalysisResult";
+import { analyzeSMS, getJustification, type SentinelRequest, type SentinelResponse } from "@/services/sentinelApiService";
 
 // Sample scam message for demo
 const SAMPLE_MESSAGE = {
@@ -24,9 +23,12 @@ const SAMPLE_MESSAGE = {
 
 export default function Demo() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, language: uiLanguage } = useTranslation();
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
+  const [sentinelResult, setSentinelResult] = useState<SentinelResponse | null>(null);
+  const [justification, setJustification] = useState<string | null>(null);
+  const [justificationLoading, setJustificationLoading] = useState(false);
+  const [justificationError, setJustificationError] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
   const [demoCount, setDemoCount] = useState(() => {
     const count = localStorage.getItem('demoAnalysisCount');
@@ -130,76 +132,89 @@ export default function Demo() {
     }
 
     setIsAnalyzing(true);
-    setAnalysisResult(null);
+    setSentinelResult(null);
+    setJustification(null);
+    setJustificationLoading(false);
+    setJustificationError(false);
 
-    for (let i = 0; i < loadingMessages.length; i++) {
-      setLoadingMessage(loadingMessages[i]);
-      await new Promise((resolve) => setTimeout(resolve, 800));
-    }
-
-    // Mock analysis - high risk for the sample
-    const result: AnalysisResult = {
-      riskScore: 92,
-      riskLevel: "high",
-      confidence: 94,
-      verdict: "This message is likely a smishing attempt",
-      action: "Do NOT click links or share personal information",
-      threats: [
-        { title: "Suspicious Link Detected", description: "Contains shortened URL (bit.ly)", severity: "high" },
-        { title: "Urgency Tactics", description: "Creates artificial time pressure (24 hours)", severity: "high" },
-        { title: "Bank Impersonation", description: "Pretends to be from SBI", severity: "high" },
-        { title: "KYC Scam Pattern", description: "Matches known KYC fraud pattern", severity: "high" },
-      ],
-      senderAnalysis: {
-        phone: formData.phone,
-        inContacts: false,
-        reportCount: 47,
-        isNew: true,
-      },
-      contentAnalysis: {
-        hasLinks: true,
-        linkDomain: "bit.ly (suspicious)",
-        hasUrgency: true,
-        grammarScore: 5,
-        keywords: ["urgent", "suspended", "verify", "KYC", "24 hours"],
-      },
-      recommendations: {
-        do: [
-          "Delete this message immediately",
-          "Block the sender number",
-          "Tell 3 friends about this scam",
-          "If concerned about KYC, visit your bank branch directly",
-        ],
-        dont: [
-          "Don't click the bit.ly link",
-          "Don't call the provided number",
-          "Don't share any personal information",
-          "Don't enter banking credentials anywhere",
-        ],
-      },
-    };
-
-    setAnalysisResult(result);
-    setIsAnalyzing(false);
-    setLoadingMessage("");
-    
-    const newCount = demoCount + 1;
-    setDemoCount(newCount);
-    localStorage.setItem('demoAnalysisCount', newCount.toString());
-
-    toast({
-      title: t("analysisComplete"),
-      description: `Risk Level: HIGH (92/100)`,
-    });
-
-    setTimeout(() => {
-      if (resultRef.current) {
-        const navbarHeight = 80;
-        const elementPosition = resultRef.current.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    try {
+      // Show loading messages
+      for (let i = 0; i < loadingMessages.length; i++) {
+        setLoadingMessage(loadingMessages[i]);
+        await new Promise((resolve) => setTimeout(resolve, 800));
       }
-    }, 200);
+
+      // Convert image preview to base64 (strip data URL prefix)
+      let imageBase64: string | undefined;
+      if (filePreview) {
+        // filePreview is like "data:image/png;base64,ABC123..."
+        // We need just "ABC123..."
+        imageBase64 = filePreview.split(',')[1];
+      }
+
+      // Call real backend API
+      const payload: SentinelRequest = {
+        text: formData.message,
+        metadata: {
+          sender: formData.phone,
+          url: extractUrls(formData.message)[0], // Extract first URL if any
+        },
+        image: imageBase64,
+      };
+
+      const result = await analyzeSMS(payload);
+
+      // Store raw sentinel result for display
+      setSentinelResult(result);
+      setIsAnalyzing(false);
+      setLoadingMessage("");
+
+      // Fetch justification from Groq API
+      setJustificationLoading(true);
+      try {
+        const justificationText = await getJustification(result, uiLanguage, formData.message);
+        setJustification(justificationText);
+        setJustificationLoading(false);
+      } catch (justErr) {
+        console.error("Justification fetch failed:", justErr);
+        setJustificationError(true);
+        setJustificationLoading(false);
+      }
+
+      const newCount = demoCount + 1;
+      setDemoCount(newCount);
+      localStorage.setItem('demoAnalysisCount', newCount.toString());
+
+      const riskScore = Math.round(result.final_score * 100);
+      toast({
+        title: t("analysisComplete"),
+        description: `${result.decision} - ${riskScore}% risk (${result.confidence} confidence)`,
+      });
+
+      setTimeout(() => {
+        if (resultRef.current) {
+          const navbarHeight = 80;
+          const elementPosition = resultRef.current.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }, 200);
+    } catch (error) {
+      console.error("Analysis failed:", error);
+      setIsAnalyzing(false);
+      setLoadingMessage("");
+      toast({
+        title: t("missingInformation"),
+        description: t("tryAgain"),
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Helper function to extract URLs from text
+  const extractUrls = (text: string): string[] => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.match(urlRegex) || [];
   };
 
   return (
@@ -418,14 +433,28 @@ export default function Demo() {
               </CardContent>
             </Card>
 
-            {/* Analysis Result */}
-            {analysisResult && (
+            {/* Analysis Result - Using the same component as Analyze page */}
+            {sentinelResult && (
               <div ref={resultRef} className="mt-8 animate-fade-in-up">
-                <AnalysisReport result={analysisResult} language={formData.language} />
-                <div className="mt-8">
-                  <AIChatbot result={analysisResult} language={formData.language} messageContent={formData.message} />
+                {/* Result header / divider */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="h-px flex-1 bg-border w-8" />
+                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                      <Shield className="h-4 w-4 text-primary" />
+                      {t("analysisResults")}
+                    </div>
+                    <div className="h-px flex-1 bg-border w-8" />
+                  </div>
                 </div>
-                
+
+                <AnalysisResultComponent
+                  result={sentinelResult}
+                  justification={justification || undefined}
+                  justificationLoading={justificationLoading}
+                  justificationError={justificationError}
+                />
+
                 {/* CTA */}
                 <Card className="mt-8 bg-primary/5 border-primary/20">
                   <CardContent className="p-6 text-center">
@@ -435,7 +464,7 @@ export default function Demo() {
                     <p className="text-muted-foreground mb-4">
                       {t("signupFreeProtect")}
                     </p>
-                    <Button 
+                    <Button
                       size="lg"
                       onClick={() => navigate("/auth?tab=register")}
                       className="bg-gradient-primary"

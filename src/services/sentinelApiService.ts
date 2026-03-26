@@ -93,3 +93,83 @@ export async function checkBackendHealth(): Promise<boolean> {
     return false;
   }
 }
+
+/**
+ * Request payload for the /justify endpoint
+ */
+export interface JustifyRequest {
+  final_score: number;
+  decision: "SPAM" | "HAM";
+  confidence: "HIGH" | "MEDIUM" | "LOW";
+  pipeline_scores: {
+    text: number | null;
+    metadata: number | null;
+    image: number | null;
+  };
+  explainability: {
+    contributing_words: { word: string; score: number }[];
+    contributing_features: { feature: string; score: number }[];
+    ocr_text: string | null;
+  };
+  fusion_weights_used: {
+    text: number;
+    metadata: number;
+    image: number;
+  };
+  language: string;
+  original_message?: string;
+}
+
+/**
+ * Response from the /justify endpoint
+ */
+export interface JustifyResponse {
+  justification: string;
+}
+
+/**
+ * Get justification for ML detection result
+ * @param result - The SentinelResponse from /predict
+ * @param language - Target language (english, hindi, telugu, urdu, tamil)
+ * @param originalMessage - Original SMS message text (optional)
+ * @returns Human-readable justification in the specified language
+ */
+export async function getJustification(
+  result: SentinelResponse,
+  language: string,
+  originalMessage?: string
+): Promise<string> {
+  const payload: JustifyRequest = {
+    final_score: result.final_score,
+    decision: result.decision,
+    confidence: result.confidence,
+    pipeline_scores: result.pipeline_scores,
+    explainability: result.explainability,
+    fusion_weights_used: result.fusion_weights_used,
+    language,
+    original_message: originalMessage,
+  };
+
+  try {
+    const response = await fetch(`${SENTINEL_API_BASE_URL}/justify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Justification API error:", errorText);
+      throw new Error(`Justification failed: ${response.status}`);
+    }
+
+    const data: JustifyResponse = await response.json();
+    return data.justification;
+  } catch (error) {
+    console.error("Error fetching justification:", error);
+    // Return empty string to indicate failure - component will show loading or skip
+    throw error;
+  }
+}

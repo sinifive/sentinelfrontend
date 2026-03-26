@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ShieldCheck, Mail, Linkedin, Github } from "lucide-react";
+import { ShieldCheck, Github } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 
 export function Footer() {
@@ -49,23 +49,7 @@ export function Footer() {
             <p className="text-primary text-xs font-semibold mb-4">{t("builtForRuralIndia")}</p>
             <div className="flex items-center gap-4">
               <a
-                href="mailto:support@sentinelai.com"
-                className="text-white/40 hover:text-primary transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-primary transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="https://github.com"
+                href="https://github.com/sinifive/sentinelfrontend"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-primary transition-colors"

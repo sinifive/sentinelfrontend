@@ -57,7 +57,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto text-base sm:text-lg px-8 rounded-full border-white/30 text-white hover:bg-white/10 transition-all duration-200 hover:scale-105 active:scale-95 group"
+                className="w-full sm:w-auto text-base sm:text-lg px-8 rounded-full border-white/30 text-white bg-white/10 hover:bg-white/20 dark:text-white dark:border-white/30 transition-all duration-200 hover:scale-105 active:scale-95 group"
                 onClick={() => navigate("/about")}
               >
                 {t("seeHowItWorks")}

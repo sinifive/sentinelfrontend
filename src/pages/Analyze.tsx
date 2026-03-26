@@ -17,17 +17,20 @@ import { AnalysisResult as AnalysisResultComponent } from "@/components/features
 import { useAuth } from "@/contexts/AuthContext";
 import { uploadScreenshot } from "@/services/storageService";
 import { useAnalysis } from "@/hooks/useAnalysis";
-import { checkBackendHealth } from "@/services/sentinelApiService";
+import { checkBackendHealth, getJustification } from "@/services/sentinelApiService";
 import type { SentinelRequest } from "@/services/sentinelApiService";
 import type { AnalysisResult, Language } from "@/types";
 
 export default function Analyze() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, language: uiLanguage } = useTranslation();
   const { user, loading: authLoading } = useAuth();
   const { loading: analysisLoading, error: analysisError, result: sentinelResult, runAnalysis } = useAnalysis();
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [justification, setJustification] = useState<string | null>(null);
+  const [justificationLoading, setJustificationLoading] = useState(false);
+  const [justificationError, setJustificationError] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [loadingMessage, setLoadingMessage] = useState("");
   const [backendOnline, setBackendOnline] = useState(true);
@@ -77,6 +80,30 @@ export default function Analyze() {
     };
     checkHealth();
   }, []);
+
+  // Fetch justification when sentinelResult is available
+  useEffect(() => {
+    if (!analysisLoading && sentinelResult && !analysisError) {
+      setJustificationLoading(true);
+      setJustificationError(false);
+
+      getJustification(sentinelResult, uiLanguage, formData.message)
+        .then((text) => {
+          setJustification(text);
+          setJustificationLoading(false);
+        })
+        .catch((err) => {
+          console.error("Justification fetch failed:", err);
+          setJustificationError(true);
+          setJustificationLoading(false);
+        });
+    } else if (!sentinelResult) {
+      // Reset justification state when result is cleared
+      setJustification(null);
+      setJustificationLoading(false);
+      setJustificationError(false);
+    }
+  }, [analysisLoading, sentinelResult, analysisError, uiLanguage, formData.message]);
 
   // Convert SentinelResponse to AnalysisResult when analysis completes
   useEffect(() => {
@@ -720,7 +747,12 @@ export default function Analyze() {
                   </Button>
                 </div>
 
-                <AnalysisResultComponent result={sentinelResult} />
+                <AnalysisResultComponent
+                  result={sentinelResult}
+                  justification={justification || undefined}
+                  justificationLoading={justificationLoading}
+                  justificationError={justificationError}
+                />
 
                 {/* Note: AI Chatbot is now available as a floating widget in bottom-right corner */}
               </div>

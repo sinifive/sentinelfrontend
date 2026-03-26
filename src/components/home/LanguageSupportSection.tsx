@@ -22,9 +22,30 @@ const languages = [
     status: "Complete language support",
     sample: "ఈ సందేశం మోసం. వెంటనే బ్లాక్ చేయండి.",
   },
+  {
+    name: "Tamil",
+    native: "தமிழ்",
+    flag: "🇮🇳",
+    status: "Full analysis support",
+    sample: "இந்த செய்தி ஒரு மோசடி. உடனே தடு.",
+  },
+  {
+    name: "Urdu",
+    native: "اردو",
+    flag: "🇵🇰",
+    status: "Complete language support",
+    sample: "یہ پیغام ایک فریب ہے۔ فوری طور پر بلاک کریں۔",
+  },
+  {
+    name: "Marathi",
+    native: "मराठी",
+    flag: "🇮🇳",
+    status: "Full analysis support",
+    sample: "हा संदेश एक घोटाळा आहे. लगेच ब्लॉक करा.",
+  },
 ];
 
-const comingSoon = ["Tamil", "Kannada", "Marathi", "Bengali", "Gujarati"];
+const comingSoon = ["Kannada", "Bengali", "Gujarati", "Punjabi"];
 
 export function LanguageSupportSection() {
   return (
