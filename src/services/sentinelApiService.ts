@@ -3,11 +3,11 @@
  * Handles communication with the multi-modal phishing detection API
  */
 
-// Fixed /predict endpoint requested for frontend integration.
-export const API_URL = "https://SINIFI-sentinelai-backend.hf.space/predict";
+// Use environment variable for API base URL with fallback
+const SENTINEL_API_BASE_URL = import.meta.env.VITE_SENTINEL_API_URL || "https://SINIFI-sentinelai-backend.hf.space";
 
-// Derive base URL for auxiliary endpoints like /health and /justify.
-const SENTINEL_API_BASE_URL = API_URL.replace(/\/predict$/, "");
+// Build the predict endpoint URL
+export const API_URL = `${SENTINEL_API_BASE_URL}/predict`;
 
 /**
  * Request payload for the Sentinel API /predict endpoint
