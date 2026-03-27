@@ -12,10 +12,10 @@ interface Message {
 
 // Backend API call for the floating chatbot (resolves CORS issues)
 async function callBackendChatAPI(userMessage: string, language: string): Promise<string> {
-  const BACKEND_API_URL = import.meta.env.VITE_SENTINEL_API_URL || 'http://localhost:8000';
+  const CHAT_API_ENDPOINT = import.meta.env.VITE_CHAT_API_URL || "https://SINIFI-sentinelai-backend.hf.space/chat";
 
   try {
-    const response = await fetch(`${BACKEND_API_URL}/chat`, {
+    const response = await fetch(CHAT_API_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
