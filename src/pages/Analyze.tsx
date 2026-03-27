@@ -412,10 +412,10 @@ export default function Analyze() {
       // Build SentinelRequest payload
       const payload: SentinelRequest = {
         text: formData.message,
-        image: imageBase64,
+        image: imageBase64 ?? null,
         metadata: {
-          sender: formData.phone,
-          url: extractedUrl,
+          sender: formData.phone || "",
+          url: extractedUrl || "",
           timestamp: timestamp,
         },
       };

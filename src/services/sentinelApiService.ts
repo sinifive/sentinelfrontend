@@ -3,20 +3,22 @@
  * Handles communication with the multi-modal phishing detection API
  */
 
-// API Base URL from environment variable with fallback
-export const SENTINEL_API_BASE_URL =
-  import.meta.env.VITE_SENTINEL_API_URL || "http://localhost:8000";
+// Fixed /predict endpoint requested for frontend integration.
+export const API_URL = "https://SINIFI-sentinelai-backend.hf.space/predict";
+
+// Derive base URL for auxiliary endpoints like /health and /justify.
+const SENTINEL_API_BASE_URL = API_URL.replace(/\/predict$/, "");
 
 /**
  * Request payload for the Sentinel API /predict endpoint
  */
 export interface SentinelRequest {
-  text?: string;
-  image?: string; // base64
-  metadata?: {
-    sender?: string;
-    url?: string;
-    timestamp?: string;
+  text: string;
+  image: string | null; // base64 or null
+  metadata: {
+    sender: string;
+    url: string;
+    timestamp: string;
   };
 }
 
@@ -53,12 +55,22 @@ export interface SentinelResponse {
 export async function analyzeSMS(
   payload: SentinelRequest
 ): Promise<SentinelResponse> {
-  const response = await fetch(`${SENTINEL_API_BASE_URL}/predict`, {
+  const normalizedPayload: SentinelRequest = {
+    text: payload.text,
+    image: payload.image ?? null,
+    metadata: {
+      sender: payload.metadata?.sender ?? "",
+      url: payload.metadata?.url ?? "",
+      timestamp: payload.metadata?.timestamp ?? new Date().toISOString(),
+    },
+  };
+
+  const response = await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(normalizedPayload),
   });
 
   if (!response.ok) {

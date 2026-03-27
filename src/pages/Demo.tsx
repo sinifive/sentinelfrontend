@@ -153,13 +153,18 @@ export default function Demo() {
       }
 
       // Call real backend API
+      const timestamp = formData.date && formData.time
+        ? new Date(`${formData.date}T${formData.time}`).toISOString()
+        : new Date().toISOString();
+
       const payload: SentinelRequest = {
         text: formData.message,
         metadata: {
-          sender: formData.phone,
-          url: extractUrls(formData.message)[0], // Extract first URL if any
+          sender: formData.phone || "",
+          url: extractUrls(formData.message)[0] || "", // Extract first URL if any
+          timestamp,
         },
-        image: imageBase64,
+        image: imageBase64 ?? null,
       };
 
       const result = await analyzeSMS(payload);
